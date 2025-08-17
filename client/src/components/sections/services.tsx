@@ -33,10 +33,10 @@ export function Services() {
   ];
 
   return (
-    <section id="services" className="relative py-20">
+    <section id="services" className="relative py-20 reveal-section">
       <div className="max-w-7xl mx-auto px-6">
-        <div className="text-center mb-16 animate-fadeInUp">
-          <h2 className="font-orbitron font-bold text-4xl md:text-6xl gradient-text mb-6">
+        <div className="text-center mb-16">
+          <h2 className="font-orbitron font-bold text-4xl md:text-6xl gradient-reveal mb-6">
             What We Do
           </h2>
           <p className="text-xl text-gray-300 max-w-3xl mx-auto">
@@ -48,8 +48,7 @@ export function Services() {
           {services.map((service, index) => (
             <div 
               key={index}
-              className="glassmorphism rounded-3xl p-8 hover-depth transition-all duration-500 magnetic-hover group animate-scaleIn"
-              style={{ animationDelay: `${index * 0.1}s` }}
+              className="stagger-item glassmorphism-strong rounded-3xl p-8 hover-depth transition-all duration-500 magnetic-enhanced group"
             >
               <div className="text-4xl mb-6 gradient-text">
                 <i className={service.icon}></i>

@@ -12,10 +12,10 @@ export function Navigation() {
   };
 
   return (
-    <nav className="fixed top-0 left-0 right-0 z-50 glassmorphism">
+    <nav className="fixed top-0 left-0 right-0 z-50 glassmorphism-strong">
       <div className="max-w-7xl mx-auto px-6 py-4">
         <div className="flex justify-between items-center">
-          <div className="font-orbitron font-bold text-xl gradient-text">
+          <div className="font-orbitron font-bold text-xl gradient-text hover-lift cursor-pointer">
             FiguringOut
           </div>
           
@@ -23,31 +23,31 @@ export function Navigation() {
           <div className="hidden md:flex space-x-8">
             <button
               onClick={() => scrollToSection('hero')}
-              className="hover:text-purple-400 transition-colors magnetic-hover"
+              className="gradient-text-hover transition-all duration-300 magnetic-enhanced relative"
             >
               Home
             </button>
             <button
               onClick={() => scrollToSection('about')}
-              className="hover:text-purple-400 transition-colors magnetic-hover"
+              className="gradient-text-hover transition-all duration-300 magnetic-enhanced relative"
             >
               About
             </button>
             <button
               onClick={() => scrollToSection('services')}
-              className="hover:text-purple-400 transition-colors magnetic-hover"
+              className="gradient-text-hover transition-all duration-300 magnetic-enhanced relative"
             >
               Services
             </button>
             <button
               onClick={() => scrollToSection('portfolio')}
-              className="hover:text-purple-400 transition-colors magnetic-hover"
+              className="gradient-text-hover transition-all duration-300 magnetic-enhanced relative"
             >
               Portfolio
             </button>
             <button
               onClick={() => scrollToSection('contact')}
-              className="hover:text-purple-400 transition-colors magnetic-hover"
+              className="gradient-text-hover transition-all duration-300 magnetic-enhanced relative"
             >
               Contact
             </button>

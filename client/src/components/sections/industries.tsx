@@ -11,10 +11,10 @@ export function Industries() {
   ];
 
   return (
-    <section id="industries" className="relative py-20">
+    <section id="industries" className="relative py-20 reveal-section">
       <div className="max-w-7xl mx-auto px-6">
-        <div className="text-center mb-16 animate-fadeInUp">
-          <h2 className="font-orbitron font-bold text-4xl md:text-6xl gradient-text mb-6">
+        <div className="text-center mb-16">
+          <h2 className="font-orbitron font-bold text-4xl md:text-6xl gradient-reveal mb-6">
             Industries We Serve
           </h2>
           <p className="text-xl text-gray-300 max-w-3xl mx-auto">
@@ -26,8 +26,7 @@ export function Industries() {
           {industries.map((industry, index) => (
             <div 
               key={index}
-              className="glassmorphism rounded-3xl p-8 text-center hover-depth transition-all duration-500 magnetic-hover group animate-scaleIn"
-              style={{ animationDelay: `${index * 0.1}s` }}
+              className="stagger-item glassmorphism-strong rounded-3xl p-8 text-center hover-depth transition-all duration-500 magnetic-enhanced group"
             >
               <div className="text-5xl mb-6 gradient-text group-hover:animate-pulse">
                 <i className={industry.icon}></i>

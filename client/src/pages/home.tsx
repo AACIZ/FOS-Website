@@ -7,11 +7,15 @@ import { Services } from '@/components/sections/services';
 import { Portfolio } from '@/components/sections/portfolio';
 import { Industries } from '@/components/sections/industries';
 import { Contact } from '@/components/sections/contact';
-import { CustomCursor } from '@/components/ui/custom-cursor';
-import { ScrollIndicator } from '@/components/ui/scroll-indicator';
-import { Particles } from '@/components/ui/particles';
+import { EnhancedCursor } from '../components/ui/enhanced-cursor';
+import { ScrollIndicator } from '../components/ui/scroll-indicator';
+import { AdvancedParticles } from '../components/ui/advanced-particles';
+import { useSimpleAnimations } from '../hooks/use-simple-animations';
 
 export default function Home() {
+  // Initialize animations
+  useSimpleAnimations();
+
   useEffect(() => {
     // Add FontAwesome CSS
     const fontAwesome = document.createElement('link');
@@ -57,9 +61,9 @@ export default function Home() {
 
   return (
     <div className="min-h-screen bg-black text-white font-inter overflow-x-hidden">
-      <CustomCursor />
+      <EnhancedCursor />
       <ScrollIndicator />
-      <Particles />
+      <AdvancedParticles />
       <Navigation />
       
       <main>

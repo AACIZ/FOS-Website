@@ -79,8 +79,16 @@
 @layer components {
   .glassmorphism {
     background: rgba(255, 255, 255, 0.1);
-    backdrop-filter: blur(10px);
+    backdrop-filter: blur(20px);
     border: 1px solid rgba(255, 255, 255, 0.2);
+    box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.37);
+  }
+
+  .glassmorphism-strong {
+    background: rgba(255, 255, 255, 0.15);
+    backdrop-filter: blur(30px);
+    border: 1px solid rgba(255, 255, 255, 0.3);
+    box-shadow: 0 12px 40px 0 rgba(31, 38, 135, 0.5);
   }
 
   .gradient-text {
@@ -90,6 +98,19 @@
     background-clip: text;
     -webkit-text-fill-color: transparent;
     animation: gradient-shift 3s ease infinite;
+  }
+
+  .gradient-reveal {
+    background: linear-gradient(90deg, 
+      var(--foreground) 0%, 
+      var(--purple-primary) 25%, 
+      var(--blue-primary) 50%, 
+      var(--cyan-primary) 75%, 
+      var(--foreground) 100%);
+    background-size: 200% 100%;
+    -webkit-background-clip: text;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
   }
 
   .text-shadow-glow {
@@ -102,6 +123,22 @@
 
   .magnetic-hover:hover {
     transform: scale(1.05) translateZ(0);
+  }
+
+  .magnetic-enhanced {
+    transition: all 0.6s cubic-bezier(0.23, 1, 0.320, 1);
+    transform-style: preserve-3d;
+  }
+
+  .split-scroll {
+    height: 200vh;
+    overflow: hidden;
+  }
+
+  .split-left, .split-right {
+    position: sticky;
+    top: 0;
+    height: 100vh;
   }
 
   .hover-depth {
@@ -151,6 +188,136 @@
   section {
     scroll-snap-align: start;
     min-height: 100vh;
+  }
+
+  .morphing-text {
+    position: relative;
+    overflow: hidden;
+  }
+
+  .parallax-bg {
+    will-change: transform;
+  }
+
+  .reveal-section {
+    opacity: 0;
+    transform: translateY(100px);
+  }
+
+  .stagger-item {
+    opacity: 0;
+    transform: translateY(60px) scale(0.8);
+  }
+
+  .float-element {
+    will-change: transform;
+  }
+
+  body {
+    visibility: hidden;
+  }
+
+  .smooth-scroll-content {
+    will-change: transform;
+  }
+
+  /* Enhanced gradient animations */
+  .gradient-text-hover {
+    background: linear-gradient(45deg, var(--purple-primary), var(--blue-primary), var(--cyan-primary));
+    background-size: 200% 200%;
+    -webkit-background-clip: text;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+    transition: all 0.3s ease;
+  }
+
+  .gradient-text-hover:hover {
+    background-position: 100% 100%;
+    transform: scale(1.05);
+  }
+
+  /* Split screen styles */
+  .split-container {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    height: 100vh;
+    overflow: hidden;
+  }
+
+  .split-left {
+    position: relative;
+    overflow: hidden;
+  }
+
+  .split-right {
+    position: relative;
+    overflow: hidden;
+  }
+
+  /* Enhanced hover effects */
+  .hover-lift {
+    transition: all 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+  }
+
+  .hover-lift:hover {
+    transform: translateY(-8px) scale(1.02);
+    box-shadow: 0 25px 50px -12px rgba(139, 92, 246, 0.25);
+  }
+
+  /* Morphing backgrounds */
+  .morphing-gradient {
+    background: linear-gradient(-45deg, 
+      var(--purple-primary), 
+      var(--blue-primary), 
+      var(--cyan-primary), 
+      var(--purple-light));
+    background-size: 400% 400%;
+    animation: gradient-shift 8s ease infinite;
+  }
+
+  /* Text reveal animation */
+  .text-reveal {
+    overflow: hidden;
+    position: relative;
+  }
+
+  .text-reveal::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(90deg, 
+      transparent 0%, 
+      var(--background) 50%, 
+      transparent 100%);
+    animation: text-reveal 2s ease-out;
+  }
+
+  /* Magnetic field effect */
+  .magnetic-field {
+    position: relative;
+    overflow: hidden;
+  }
+
+  .magnetic-field::before {
+    content: '';
+    position: absolute;
+    top: -50%;
+    left: -50%;
+    width: 200%;
+    height: 200%;
+    background: radial-gradient(circle at center, 
+      rgba(139, 92, 246, 0.1) 0%, 
+      transparent 70%);
+    opacity: 0;
+    transition: opacity 0.3s ease;
+    pointer-events: none;
+  }
+
+  .magnetic-field:hover::before {
+    opacity: 1;
   }
 }
 
@@ -211,5 +378,45 @@
   to {
     opacity: 1;
     transform: scale(1);
+  }
+}
+
+@keyframes text-reveal {
+  0% {
+    transform: translateX(-100%);
+  }
+  100% {
+    transform: translateX(100%);
+  }
+}
+
+@keyframes pulse-glow {
+  0%, 100% {
+    box-shadow: 0 0 20px rgba(139, 92, 246, 0.3);
+  }
+  50% {
+    box-shadow: 0 0 40px rgba(139, 92, 246, 0.8);
+  }
+}
+
+@keyframes slide-in-left {
+  from {
+    transform: translateX(-100%);
+    opacity: 0;
+  }
+  to {
+    transform: translateX(0);
+    opacity: 1;
+  }
+}
+
+@keyframes slide-in-right {
+  from {
+    transform: translateX(100%);
+    opacity: 0;
+  }
+  to {
+    transform: translateX(0);
+    opacity: 1;
   }
 }

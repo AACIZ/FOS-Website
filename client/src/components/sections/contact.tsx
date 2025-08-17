@@ -81,10 +81,10 @@ export function Contact() {
   };
 
   return (
-    <section id="contact" className="relative py-20">
+    <section id="contact" className="relative py-20 reveal-section">
       <div className="max-w-6xl mx-auto px-6">
-        <div className="text-center mb-16 animate-fadeInUp">
-          <h2 className="font-orbitron font-bold text-4xl md:text-6xl gradient-text mb-6">
+        <div className="text-center mb-16">
+          <h2 className="font-orbitron font-bold text-4xl md:text-6xl gradient-reveal mb-6">
             Let's Multiply Your Impact
           </h2>
           <p className="text-xl text-gray-300 max-w-3xl mx-auto">
@@ -93,8 +93,8 @@ export function Contact() {
         </div>
 
         <div className="grid md:grid-cols-2 gap-16 items-start">
-          <div className="animate-scaleIn">
-            <div className="glassmorphism rounded-3xl p-8 mb-8">
+          <div className="stagger-item">
+            <div className="glassmorphism-strong rounded-3xl p-8 mb-8 magnetic-enhanced">
               <h3 className="font-orbitron font-bold text-2xl gradient-text mb-6">Get Started Today</h3>
               
               <form onSubmit={handleSubmit} className="space-y-6">
@@ -160,7 +160,7 @@ export function Contact() {
                 <button 
                   type="submit" 
                   disabled={isSubmitting}
-                  className="w-full glassmorphism py-4 rounded-xl font-semibold hover-depth transition-all duration-300 magnetic-hover disabled:opacity-50 disabled:cursor-not-allowed"
+                  className="w-full glassmorphism-strong py-4 rounded-xl font-semibold hover-depth transition-all duration-500 magnetic-enhanced disabled:opacity-50 disabled:cursor-not-allowed group"
                 >
                   <i className={`${isSubmitting ? 'fas fa-spinner animate-spin' : 'fas fa-paper-plane'} mr-2`}></i>
                   {isSubmitting ? 'Sending...' : 'Send Message'}
@@ -169,8 +169,8 @@ export function Contact() {
             </div>
           </div>
 
-          <div className="space-y-8 animate-fadeInUp">
-            <div className="glassmorphism rounded-3xl p-8">
+          <div className="space-y-8 stagger-item">
+            <div className="glassmorphism-strong rounded-3xl p-8 magnetic-enhanced">
               <h3 className="font-orbitron font-bold text-2xl gradient-text mb-6">Contact Information</h3>
               
               <div className="space-y-6">
@@ -206,7 +206,7 @@ export function Contact() {
               </div>
             </div>
 
-            <div className="glassmorphism rounded-3xl p-8">
+            <div className="glassmorphism-strong rounded-3xl p-8 magnetic-enhanced">
               <h3 className="font-orbitron font-bold text-2xl gradient-text mb-6">Follow Us</h3>
               
               <div className="flex space-x-4">

@@ -55,10 +55,10 @@ export function Portfolio() {
   };
 
   return (
-    <section id="portfolio" className="relative py-20">
+    <section id="portfolio" className="relative py-20 reveal-section split-scroll">
       <div className="max-w-7xl mx-auto px-6">
-        <div className="text-center mb-16 animate-fadeInUp">
-          <h2 className="font-orbitron font-bold text-4xl md:text-6xl gradient-text mb-6">
+        <div className="text-center mb-16">
+          <h2 className="font-orbitron font-bold text-4xl md:text-6xl gradient-reveal mb-6">
             Portfolio
           </h2>
           <p className="text-xl text-gray-300 max-w-3xl mx-auto">
@@ -70,8 +70,7 @@ export function Portfolio() {
           {projects.map((project, index) => (
             <div 
               key={index}
-              className="group relative glassmorphism rounded-3xl overflow-hidden hover-depth transition-all duration-500 animate-scaleIn"
-              style={{ animationDelay: `${index * 0.2}s` }}
+              className="stagger-item group relative glassmorphism-strong rounded-3xl overflow-hidden hover-depth transition-all duration-700 magnetic-enhanced"
             >
               <div className="aspect-video bg-gradient-to-br from-purple-500/30 to-blue-500/30 relative overflow-hidden">
                 <img 
