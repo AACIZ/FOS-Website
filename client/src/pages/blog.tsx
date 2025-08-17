@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { useQuery } from '@tanstack/react-query';
 import { Link } from 'wouter';
 import { Navigation } from '@/components/layout/navigation';
@@ -16,18 +16,31 @@ export default function Blog() {
   const [searchQuery, setSearchQuery] = useState('');
   const [selectedCategory, setSelectedCategory] = useState<number | null>(null);
 
-  // Fetch published blog posts
+  useEffect(() => {
+    // Make body visible (it's hidden by default in CSS)
+    document.body.style.visibility = 'visible';
+  }, []);
+
+  // Fetch all blog posts (temporarily to debug)
   const { data: posts = [], isLoading: postsLoading } = useQuery<BlogPost[]>({
-    queryKey: ['/api/blog/posts', { published: true }],
-    queryFn: () => 
-      fetch('/api/blog/posts?published=true').then(res => res.json())
+    queryKey: ['/api/blog/posts'],
+    queryFn: async () => {
+      const res = await fetch('/api/blog/posts');
+      const data = await res.json();
+      console.log('Fetched all posts:', data);
+      return data;
+    }
   });
 
   // Fetch categories
   const { data: categories = [] } = useQuery<Category[]>({
     queryKey: ['/api/categories'],
-    queryFn: () => 
-      fetch('/api/categories').then(res => res.json())
+    queryFn: async () => {
+      const res = await fetch('/api/categories');
+      const data = await res.json();
+      console.log('Fetched categories:', data);
+      return data;
+    }
   });
 
   // Search posts
@@ -46,8 +59,9 @@ export default function Blog() {
     enabled: selectedCategory !== null
   });
 
-  const displayPosts = searchQuery.length > 2 ? searchResults : 
-                     selectedCategory ? categoryPosts : posts;
+  const displayPosts = searchQuery.length > 2 ? (Array.isArray(searchResults) ? searchResults : []) : 
+                     selectedCategory ? (Array.isArray(categoryPosts) ? categoryPosts : []) : 
+                     (Array.isArray(posts) ? posts : []);
 
   const formatDate = (dateString: string | Date | null) => {
     if (!dateString) return '';
@@ -108,7 +122,7 @@ export default function Blog() {
 
               {/* Category Filters */}
               <div className="flex flex-wrap gap-2">
-                {categories.map((category) => (
+                {Array.isArray(categories) && categories.map((category) => (
                   <Badge
                     key={category.id}
                     variant={selectedCategory === category.id ? "default" : "outline"}
@@ -175,12 +189,12 @@ export default function Blog() {
                       <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent"></div>
                       
                       {/* Category Badge */}
-                      {categories.find(cat => cat.id === post.categoryId) && (
+                      {Array.isArray(categories) && categories.find(cat => cat.id === post.categoryId) && (
                         <Badge 
                           className="absolute top-4 left-4 bg-purple-600/90 text-white border-none"
-                          style={{ backgroundColor: (categories.find(cat => cat.id === post.categoryId)?.color || '#8b5cf6') + '90' }}
+                          style={{ backgroundColor: (Array.isArray(categories) ? categories.find(cat => cat.id === post.categoryId)?.color || '#8b5cf6' : '#8b5cf6') + '90' }}
                         >
-                          {categories.find(cat => cat.id === post.categoryId)?.name}
+                          {Array.isArray(categories) ? categories.find(cat => cat.id === post.categoryId)?.name : ''}
                         </Badge>
                       )}
                     </div>

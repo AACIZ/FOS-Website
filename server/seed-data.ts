@@ -1,3 +1,4 @@
+import 'dotenv/config';
 import { storage } from './storage';
 
 async function seedDatabase() {
@@ -343,13 +344,11 @@ async function seedDatabase() {
 }
 
 // Run if called directly
-if (require.main === module) {
-  seedDatabase().then(() => {
-    process.exit(0);
-  }).catch(error => {
-    console.error('Seeding failed:', error);
-    process.exit(1);
-  });
-}
+seedDatabase().then(() => {
+  process.exit(0);
+}).catch(error => {
+  console.error('Seeding failed:', error);
+  process.exit(1);
+});
 
 export { seedDatabase };

@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { useQuery, useMutation, useQueryClient } from '@tanstack/react-query';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
@@ -11,7 +11,7 @@ import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@
 import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs';
 import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogTrigger } from '@/components/ui/dialog';
 import { toast } from '@/hooks/use-toast';
-import { Plus, Edit, Trash2, Eye, Calendar, Tag, Save, X } from 'lucide-react';
+import { Plus, Edit, Trash2, Eye, Calendar, Tag, Save, X, LogOut } from 'lucide-react';
 import { apiRequest } from '@/lib/queryClient';
 import { type BlogPost, type Category, type InsertBlogPost, type InsertCategory } from '@shared/schema';
 
@@ -25,6 +25,11 @@ export default function Admin() {
   const [tagInput, setTagInput] = useState('');
 
   const queryClient = useQueryClient();
+
+  useEffect(() => {
+    // Make body visible (it's hidden by default in CSS)
+    document.body.style.visibility = 'visible';
+  }, []);
 
   // Fetch blog posts
   const { data: posts = [] } = useQuery<BlogPost[]>({
@@ -175,11 +180,24 @@ export default function Admin() {
   return (
     <div className="min-h-screen bg-gradient-dark text-white">
       <div className="max-w-7xl mx-auto px-6 py-8">
-        <div className="mb-8">
-          <h1 className="text-4xl font-orbitron font-bold gradient-text mb-2">
-            Content Management System
-          </h1>
-          <p className="text-gray-400">Manage your blog posts and categories</p>
+        <div className="mb-8 flex justify-between items-center">
+          <div>
+            <h1 className="text-4xl font-orbitron font-bold gradient-text mb-2">
+              Content Management System
+            </h1>
+            <p className="text-gray-400">Manage your blog posts and categories</p>
+          </div>
+          <Button
+            onClick={() => {
+              localStorage.removeItem('isAuthenticated');
+              window.location.href = '/login';
+            }}
+            variant="outline"
+            className="border-red-400/30 text-red-400 hover:bg-red-400/10"
+          >
+            <LogOut className="w-4 h-4 mr-2" />
+            Logout
+          </Button>
         </div>
 
         <Tabs defaultValue="posts" className="w-full">
