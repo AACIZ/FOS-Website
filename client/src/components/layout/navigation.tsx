@@ -1,4 +1,5 @@
 import { useState } from 'react';
+import { Link } from 'wouter';
 
 export function Navigation() {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
@@ -51,6 +52,11 @@ export function Navigation() {
             >
               Contact
             </button>
+            <Link href="/blog">
+              <button className="gradient-text-hover transition-all duration-300 magnetic-enhanced relative">
+                Blog
+              </button>
+            </Link>
           </div>
 
           {/* Mobile Menu Button */}
